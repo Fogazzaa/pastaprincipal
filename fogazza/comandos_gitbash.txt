@@ -1,0 +1,6 @@
+	
+	git commit -m "assunto do commit"
+
+	git push origin
+
+	git status
