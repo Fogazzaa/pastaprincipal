@@ -53,4 +53,74 @@ else:
     print('não encontrado')
 print("")
 
+# Conferidor de apostas em loterias
+
+sorteados = [5, 11, 9, 42, 3, 49]
+apostados = [3, 7, 11, 42, 34, 49]
+acertos = 0
+
+for numero in sorteados:
+    if numero in apostados:
+        acertos += 1
+
+print('acertos: ', acertos)
+print('')
+
+# Remoção de números repetidos em uma lista
+lista = [1,2,4,4,1,4,2,6,2,9]
+print('lista original: ', lista)
+print('')
+
+# Lista de apoio
+vistos = []
+
+# Interar pela lista original de trás para frente
+for i in range(len(lista) - 1, -1, -1):
+    # Se o número já está na lista 'vistos', remove-lo da lista original
+    if lista[i] in vistos:
+        del lista[i]
+    else:
+        # Caso contrário, adicionar a lista 'vistos'
+        vistos.append(lista[i]) 
+
+# Exibi a lista modificada
+print('lista modificada: ', lista)
+print('')
+
+# Listas Avançadas
+# 2D - listas alinhadas bidimensonais
+tabela = [[":(",":)",":|",";-;"] # [0]
+         ,[";-;",":|",":)",":("], # [1]
+          [":|",":)",";-;",":("]] # [2]
+
+print('tabela[0][3]: ', tabela[0][3])
+print('')
+print('tabela[0]: ', tabela[0])
+print('')
+print(tabela)
+print('')
+
+# 3D - Matriz Tridimensional
+
+cubo = [[[':(', 'y', 'z'],
+         [':)', 'y', 'z'],
+         [':|', 'y', 'z']],
+ 
+        [['amor', 'ódio', 'caridade'],
+         [':paz', 'esperança', 'férias'],
+         ['tina', 'prior', 'pp']],
+ 
+        [[':restinga', 'patrcínio', 'rifaina'],
+         ['amazonence', 'fluminense', 'santos'],
+         ['pizza', 'lasanha', 'pastel']]]
+
+print(cubo)
+print('')
+print(cubo[1])
+print(" ")
+print(cubo[1][0])
+print(" ")
+print(cubo[1][0][2])
+print(" ")
+
 time.sleep(1)

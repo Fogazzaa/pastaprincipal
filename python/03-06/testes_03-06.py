@@ -110,4 +110,4 @@ print('')
 print('15 not in naosei: ', 15 not in naosei)
 print('')
 
-time.sleep(1)
+time.sleep(3)
