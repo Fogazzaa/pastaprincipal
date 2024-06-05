@@ -21,9 +21,6 @@ const int botaoAmarelo = pinos[4];
 const int botaoVerde = pinos[5];
 const int buzzer = pinos[6];
 
-// Função do Número Aleatório
-long randNumber;
-
 // Declaração dos contadores
 int contadorVermelho = 0;
 int contadorAmarelo = 0;
@@ -79,9 +76,9 @@ void pacman() {
     digitalWrite(ledVerde, LOW);  // Desliga o LED
     delay(intervalo);           // Espera o intervalo de tempo
    }
-  for (int estaNota = 0; estaNota < notasPacman * 2; estaNota += 2) {
-    int duracaoNota = (notaspacman[estaNota + 1] > 0) ? (semibrevePacman / notaspacman[estaNota + 1]) : (semibrevePacman / abs(notaspacman[estaNota + 1]) * 1.5);
-    tone(buzzer, notaspacman[estaNota], duracaoNota * 0.9);
+  for (int i = 0; i < notasPacman ; i++) {
+    int duracaoNota = (notaspacman[i + 1] > 0) ? (semibrevePacman / notaspacman[i + 1]) : (semibrevePacman / abs(notaspacman[i + 1]) * 1.5);
+    tone(buzzer, notaspacman[i], duracaoNota * 0.9);
     delay(duracaoNota);
     noTone(buzzer);
   }
