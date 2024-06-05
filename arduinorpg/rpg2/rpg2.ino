@@ -4,7 +4,7 @@ int vidaVilao = 1000;
 int ataqueHeroi = 50;
 int ataqueVilao = 50;
 int piscadas = 10;
-int intervalo = 100;  
+int intervalo = 250;  
 
 // Controle da condição do botão
 bool controleBotaoVermelho = false;
@@ -253,13 +253,26 @@ void loop() {
     Serial.print("\n");
     Serial.print("\nRole o dado novamente !!! \n");
 
-    if (vidaVilao <= 0) {
-      godfather();
-      vidaVilao = 0;
-    }
-    if (vidaHeroi <= 0) {
-      pacman();
-      vidaHeroi = 0;
-    }
   }
+
+    if (vidaVilao <= 0 && vidaHeroi >= 50) {
+      godfather();
+    }
+    if (vidaHeroi <= 0 && vidaVilao >= 50) {
+      pacman();
+    }
+    if (vidaVilao <= 0 && vidaHeroi <=0 && mensagens[7] == false){
+      Serial.println("\n O jogo terminou, os dois morreram.\n"
+                   " Reinicie o jogo e jogue novamente \n");
+  for (int i = 0; i < piscadas; i++) {
+    digitalWrite(ledVerde, HIGH); // Liga o LED
+    digitalWrite(ledVermelho, HIGH); // Liga o LED
+    delay(intervalo);           // Espera o intervalo de tempo
+    digitalWrite(ledVerde, LOW);  // Desliga o LED
+    digitalWrite(ledVermelho, LOW);  // Desliga o LED
+    delay(intervalo);           // Espera o intervalo de tempo
+   }
+      mensagens[7] = true;
+    }
+
 }
