@@ -1,10 +1,10 @@
 // Declaração de estatísticas do herói e vilão
-int vidaHeroi = 100;
-int vidaVilao = 100;
-int ataqueHeroi = 5;
-int ataqueVilao = 5;
-int piscadas = 5;
-int intervalo = 500;  
+int vidaHeroi = 1000;
+int vidaVilao = 1000;
+int ataqueHeroi = 50;
+int ataqueVilao = 50;
+int piscadas = 10;
+int intervalo = 100;  
 
 // Controle da condição do botão
 bool controleBotaoVermelho = false;
@@ -69,9 +69,9 @@ int semibreveGodfather = (60000 * 4) / 80;
 
 // Função da música
 void pacman() {
-  if (mensagens[6] == false){
+  if (mensagens[4] == false){
    Serial.println("\nParabens! O Heroi venceu a batalha!\n");
-   mensagens[6] = true;
+   mensagens[4] = true;
    mensagemfim = true;}
   for (int i = 0; i < piscadas; i++) {
     digitalWrite(ledVerde, HIGH); // Liga o LED
@@ -200,20 +200,24 @@ void loop() {
 
   if (controleBotaoVerde && contadorVerde == 1 && !mensagens[1] && contadorAmarelo == 1) {
     digitalWrite(ledVerde, HIGH);
-    Serial.println("\nVoce escolheu o heroi !!!\n"
-                   "Vida : 100\n"
-                   "Ataque : 5\n"
-                   "Clique no botao central para\n"
-                   "rolar o dado !!!\n");
+    Serial.print("\nVoce escolheu o heroi !!!");
+        Serial.print("\nVida: ");
+        Serial.print(vidaHeroi);
+        Serial.print("\nAtaque: ");
+        Serial.print(ataqueHeroi);
+        Serial.print("\n" "Clique no botao central para\n"
+                               "rolar o dado !!!\n");
 
     mensagens[1] = true;
   }
 
   if (controleBotaoVermelho && contadorVermelho == 1 && !mensagens[2] && contadorAmarelo == 1) {
-    Serial.println("\nVoce escolheu o vilao !!!\n"
-                   "Vida : 100\n"
-                   "Ataque : 5\n"
-                   "Clique no botao central para\n"
+    Serial.println("\nVoce escolheu o vilao !!!");
+       Serial.print("\nVida: ");
+        Serial.print(vidaVilao);
+        Serial.print("\nAtaque: ");
+        Serial.print(ataqueVilao);
+        Serial.print("\nClique no botao central para\n"
                    "rolar o dado !!!\n");
 
     mensagens[2] = true;
@@ -247,12 +251,15 @@ void loop() {
     Serial.print("\nVida do Heroi: ");
     Serial.print(vidaHeroi);
     Serial.print("\n");
+    Serial.print("\nRole o dado novamente !!! \n");
 
     if (vidaVilao <= 0) {
       godfather();
+      vidaVilao = 0;
     }
     if (vidaHeroi <= 0) {
       pacman();
+      vidaHeroi = 0;
     }
   }
 }
