@@ -1,151 +1,185 @@
-bool controledvermelho = false;
-bool controledamarelo = false;
-bool controledverde = false;
+// Declaração de estatísticas do herói e vilão
+int vidaHeroi = 100;
+int vidaVilao = 100;
+int ataqueHeroi = 5;
+int ataqueVilao = 5;
 
-#define ledvermelho 4
-#define ledamarelo 3
-#define ledverde 2
-#define botaovermelho 5
-#define botaoamarelo 6
-#define botaoverde 7
+// Controle da condição do botão
+bool controleBotaoVermelho = false;
+bool controleBotaoAmarelo = false;
+bool controleBotaoVerde = false;
 
+// Definição dos pinos do tinkercad
+const int pinos[] = {4, 3, 2, 5, 6, 7, 11};
+const int ledVermelho = pinos[0];
+const int ledAmarelo = pinos[1];
+const int ledVerde = pinos[2];
+const int botaoVermelho = pinos[3];
+const int botaoAmarelo = pinos[4];
+const int botaoVerde = pinos[5];
+const int buzzer = pinos[6];
+
+// Função do Número Aleatório
 long randNumber;
 
-int contadorvermelho = 0;
-int contadoramarelo = 0;
-int contadorverde = 0;
-int mensagemerro = 0;
+// Declaração dos contadores
+int contadorVermelho = 0;
+int contadorAmarelo = 0;
+int contadorVerde = 0;
 
-bool mensageminicialexibida = false;
-bool mensagemselecaoheroi = false;
-bool mensagemselecaovilao = false;
+// Declaração das mensagens do jogo
+bool mensagens[] = {false, false, false, false, false, false, false};
+bool mensagemfim = false;
 
-#define NOTE_B4  494
-#define NOTE_B5  988
-#define NOTE_FS5 740
-#define NOTE_DS5 622
-#define NOTE_C5  523
-#define NOTE_C6  1047
-#define NOTE_G6  1568
-#define NOTE_E6  1319
-#define NOTE_E5  659
-#define NOTE_F5  698
-#define NOTE_G5  784
-#define NOTE_GS5 831
-#define NOTE_A5  880
-
-int tempo = 105;
-int buzzer = 11;
-
-int melodia[] = {
-  NOTE_B4, 16, NOTE_B5, 16, NOTE_FS5, 16, NOTE_DS5, 16, 
-  NOTE_B5, 32, NOTE_FS5, -16, NOTE_DS5, 8, NOTE_C5, 16,
-  NOTE_C6, 16, NOTE_G6, 16, NOTE_E6, 16, NOTE_C6, 32, NOTE_G6, -16, NOTE_E6, 8,
-  NOTE_B4, 16,  NOTE_B5, 16,  NOTE_FS5, 16,   NOTE_DS5, 16,  NOTE_B5, 32,  
-  NOTE_FS5, -16, NOTE_DS5, 8,  NOTE_DS5, 32, NOTE_E5, 32,  NOTE_F5, 32,
-  NOTE_F5, 32,  NOTE_FS5, 32,  NOTE_G5, 32,  NOTE_G5, 32, NOTE_GS5, 32,  NOTE_A5, 16, NOTE_B5, 8
+// Definição das Notas da música do Início
+const int notasMusica[] = {
+  494, 16, 988, 16, 740, 16, 622, 16, 988, 32, 740, -16, 622, 8, 523, 16,
+  1047, 16, 1568, 16, 1319, 16, 1047, 32, 1568, -16, 1319, 8, 494, 16, 988, 16,
+  740, 16, 622, 16, 988, 32, 740, -16, 622, 8, 622, 32, 659, 32, 698, 32,
+  698, 32, 740, 32, 784, 32, 784, 32, 831, 32, 880, 16, 988, 8
 };
 
-int notas = sizeof(melodia) / sizeof(melodia[0]) / 2;
-int semibreve = (60000 * 4) / tempo;
+// Calcula o número de notas
+int notas = sizeof(notasMusica) / sizeof(notasMusica[0]) / 2;
+int semibreve = (60000 * 4) / 105; // Duração da semibreve em milissegundos
 
-void playPacmanIntro() {
+// Função da música
+void intro() {
   for (int estaNota = 0; estaNota < notas * 2; estaNota += 2) {
-    int divisor = melodia[estaNota + 1];
-    int duracaoNota = (divisor > 0) ? (semibreve / divisor) : (semibreve / abs(divisor) * 1.5);
-    tone(buzzer, melodia[estaNota], duracaoNota * 0.9);
+    int duracaoNota = (notasMusica[estaNota + 1] > 0) ? (semibreve / notasMusica[estaNota + 1]) : (semibreve / abs(notasMusica[estaNota + 1]) * 1.5);
+    tone(buzzer, notasMusica[estaNota], duracaoNota * 0.9);
     delay(duracaoNota);
     noTone(buzzer);
   }
 }
 
+// Função para configurar o setup inicial
 void setup() {
-  pinMode(botaovermelho, INPUT);
-  pinMode(botaoamarelo, INPUT);
-  pinMode(botaoverde, INPUT);
-  pinMode(ledvermelho, OUTPUT);
-  pinMode(ledamarelo, OUTPUT);
-  pinMode(ledverde, OUTPUT);
+
+  randomSeed(analogRead(0)); // Inicializa a semente aleatória
+
+  // Configura os pinos
+  for (int i = 0; i < 3; i++) pinMode(pinos[i], OUTPUT);
+  for (int i = 3; i < 6; i++) pinMode(pinos[i], INPUT);
   pinMode(buzzer, OUTPUT);
-  randomSeed(analogRead(0));
-
-  Serial.begin(9600);
-
+  
+  Serial.begin(9600); // Inicializa a comunicação serial
   delay(1000);
 
-  Serial.println("+======================================+\n"
-                 "| Bem vindo ao meu jogo. Inicie o jogo |\n"
-                 "|   apertando o botao central. Entao   |\n"
-                 "|  escolha seu player, Heroi (Verde)   |\n"
-                 "|  e Vilao (Vermelho), Boa Sorte !!!   |\n"
-                 "+======================================+");
-  digitalWrite(ledamarelo, HIGH);
+  // Mensagem de boas-vindas
+  Serial.println("\nBem vindo ao meu jogo. Inicie o jogo\n"
+                 "apertando o botao central. Entao\n"
+                 "escolha seu player, Heroi (Verde)\n"
+                 "e Vilao (Vermelho), Boa Sorte !!!\n");
 
-  playPacmanIntro();
+  digitalWrite(ledAmarelo, HIGH);
+
+  intro(); // Toca a música de introdução
+}
+
+void botoes() {
+
+  bool botaoPressionadoVermelho = digitalRead(botaoVermelho) == HIGH;
+  bool botaoPressionadoAmarelo = digitalRead(botaoAmarelo) == HIGH;
+  bool botaoPressionadoVerde = digitalRead(botaoVerde) == HIGH;
+
+  if (botaoPressionadoVermelho && !controleBotaoVermelho) {
+    controleBotaoVermelho = true;
+    contadorVermelho++;
+    digitalWrite(ledVermelho, HIGH);
+  } else if (!botaoPressionadoVermelho && controleBotaoVermelho) {
+    controleBotaoVermelho = false;
+    digitalWrite(ledVermelho, LOW);
+  }
+
+  if (botaoPressionadoAmarelo && !controleBotaoAmarelo) {
+    controleBotaoAmarelo = true;
+    contadorAmarelo++;
+  } else if (!botaoPressionadoAmarelo && controleBotaoAmarelo) {
+    controleBotaoAmarelo = false;
+  }
+
+  if (botaoPressionadoVerde && !controleBotaoVerde) {
+    controleBotaoVerde = true;
+    contadorVerde++;
+    digitalWrite(ledVerde, HIGH);
+  } else if (!botaoPressionadoVerde && controleBotaoVerde) {
+    controleBotaoVerde = false;
+    digitalWrite(ledVerde, LOW);
+  }
+
 }
 
 void loop() {
-  if (digitalRead(botaovermelho) == HIGH && controledvermelho == false) {
-    controledvermelho = true;
-    contadorvermelho += 1;
-  } else if (digitalRead(botaovermelho) == HIGH && controledvermelho == true) {
-    controledvermelho = false;
+
+  botoes();
+
+  if (controleBotaoAmarelo && contadorAmarelo == 1 && !mensagens[0]) {
+    Serial.println("\nO jogo comecou, o botao esquerdo\n"
+                   "escolhe o vilao (led vermelho), e o\n"
+                   "direito escolhe o heroi (led verde).\n"
+                   "Faca uma boa escolha !!!\n");
+
+    mensagens[0] = true;
+    digitalWrite(ledAmarelo, LOW);
   }
 
-  if (digitalRead(botaoamarelo) == HIGH && controledamarelo == false) {
-    controledamarelo = true;
-    contadoramarelo += 1;
-  } else if (digitalRead(botaoamarelo) == HIGH && controledamarelo == true) {
-    controledamarelo = false;
+  if (controleBotaoVerde && contadorVerde == 1 && !mensagens[1] && contadorAmarelo == 1) {
+    Serial.println("\nVoce escolheu o heroi !!!\n"
+                   "Vida : 100\n"
+                   "Ataque : 5\n"
+                   "Clique no botao central para\n"
+                   "rolar o dado !!!\n");
+
+    mensagens[1] = true;
   }
 
-  if (digitalRead(botaoverde) == HIGH && controledverde == false) {
-    controledverde = true;
-    contadorverde += 1;
-  } else if (digitalRead(botaoverde) == HIGH && controledverde == true) {
-    controledverde = false;
+  if (controleBotaoVermelho && contadorVermelho == 1 && !mensagens[2] && contadorAmarelo == 1) {
+    Serial.println("\nVoce escolheu o vilao !!!\n"
+                   "Vida : 100\n"
+                   "Ataque : 5\n"
+                   "Clique no botao central para\n"
+                   "rolar o dado !!!\n");
+
+    mensagens[2] = true;
   }
 
-  if (controledamarelo == true && contadoramarelo == 1 && mensageminicialexibida == false) {
-    Serial.println("+======================================+\n"
-                   "| O jogo comecou, o botao esquerdo     |\n"
-                   "| escolhe o vilao (led vermelho), e o  |\n"
-                   "| direito escolhe o heroi (led verde). |\n"
-                   "|       Faca uma boa escolha !!!       |\n"
-                   "+======================================+");
-    mensageminicialexibida = true;
-    digitalWrite(ledamarelo, LOW);
-  }
+  if (controleBotaoAmarelo && (contadorAmarelo > 1) && (mensagens[1] || mensagens[2]) && !mensagemfim) {
+    int valorDadoHeroi = random(1, 7);
+    int valorDadoVilao = random(1, 7);
 
-  if (controledverde == true && contadorverde == 1 && mensagemselecaoheroi == false && contadoramarelo == 1) {
-    Serial.println("+======================================+\n"
-                   "| Voce escolheu o heroi !!!            |\n"
-                   "| Vida : 100                           |\n"
-                   "| Ataque : 5                           |\n"
-                   "| Defesa : 5                           |\n"
-                   "+======================================+");
-    contadorverde += 1;
-    mensagemselecaoheroi = true;
-    digitalWrite(ledverde, HIGH);
-  }
+    int valorAtaqueHeroi = valorDadoHeroi * ataqueHeroi;
+    int valorAtaqueVilao = valorDadoVilao * ataqueVilao;
 
-  if (controledvermelho == true && contadorvermelho == 1 && mensagemselecaovilao == false && contadoramarelo == 1) {
-    Serial.println("+======================================+\n"
-                   "| Voce escolheu o vilao !!!            |\n"
-                   "| Vida : 100                           |\n"
-                   "| Ataque : 5                           |\n"
-                   "| Defesa : 5                           |\n"
-                   "+======================================+");
-    contadorvermelho += 1;
-    mensagemselecaovilao = true;
-    digitalWrite(ledvermelho, HIGH);
-  }
+    vidaVilao -= valorAtaqueHeroi;
+    vidaHeroi -= valorAtaqueVilao;
 
-  if (controledverde == true && mensagemselecaoheroi == false && contadoramarelo == 1 && mensagemerro == 0) {
-    Serial.println("+======================================+\n"
-                   "| Voce escolheu o botao errado !!!     |\n"
-                   "| Selecione ou o heroi ou o vilao !    |\n"
-                   "+======================================+");
-    mensagemerro += 1;
+    digitalWrite(ledAmarelo, HIGH);
+
+    Serial.print("\nO dado foi rolado !!!\n"
+                 "Dado do Vilao: ");
+    Serial.print(valorDadoVilao);
+    Serial.print("\nDado do Heroi: ");
+    Serial.print(valorDadoHeroi);
+    Serial.print("\nValor do Ataque do Heroi: ");
+    Serial.print(valorAtaqueHeroi);
+    Serial.print("\nValor do Ataque do Vilao: ");
+    Serial.print(valorAtaqueVilao);
+    Serial.print("\nVida do Vilao: ");
+    Serial.print(vidaVilao);
+    Serial.print("\nVida do Heroi: ");
+    Serial.print(vidaHeroi);
+    Serial.print("\n");
+
+    if (vidaVilao <= 0 && !mensagens[6]) {
+      Serial.println("\nParabens! O Heroi venceu a batalha!\n");
+      mensagens[6] = true;
+      mensagemfim = true;
+    }
+    if (vidaHeroi <= 0 && !mensagens[7]) {
+      Serial.println("\nParabens! O Vilao venceu a batalha!\n");
+      mensagens[7] = true;
+      mensagemfim = true;
+    }
   }
 }
