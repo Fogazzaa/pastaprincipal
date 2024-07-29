@@ -1,0 +1,26 @@
+
+conectando:
+ \connect alunods@localhost:3306 
+ senai@604 
+ \sql 
+ show databases; 
+ create database exemplo; 
+ use exemplo;  
+ drop database exemplo;
+ create database if not exists exemplo2;
+
+exemplo1:
+ create database if not exists exemplo2;
+ show databases;
+ use exemplo2;
+ show tables;
+ drop database if exists exemplo2;
+ show tables;
+
+exemplo2:(decimal(5 dígitos (3 inteiros, 2 decimais)))
+ create table if not exists pizza(
+     codigo int, 
+     nome varchar(30), 
+     valor decimal(5,2)
+ );
+ desc pizza;
