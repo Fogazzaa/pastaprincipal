@@ -1,0 +1,48 @@
+
+create database pizzaria;
+
+use pizzaria;
+
+create table pizza(
+    codigo int,
+    nome varchar(255),
+    valor decimal(5,2)
+);
+
+ alter table pizza
+     add ingredientes varchar(255) default "massa,molho,queijo";
+
+ alter table pizza
+     add tamanho varchar(30) not null;
+
+ alter table pizza
+     pizza drop tamanho;
+
+ alter table pizza
+     add tamanho varchar(6) default "broto"
+     check (tamanho in ('broto', 'media', 'grande')) 
+      	not null;
+
+ alter table pizza
+     add unique(nome);
+
+ alter table pizza
+     modify column codigo int auto_increment;
+
+ alter table pizza
+     modify column nome varchar(255) not null;
+
+ create table clientes(
+     idcliente int primary key auto_increment,
+     nome varchar(255) not null,
+     email varchar(255) unique not null);
+
+ create table pedidos(
+     idpedido int primary key auto_increment,
+     produto varchar(50) not null,
+     quantidade int not null,
+     fkidcliente int not null,
+     foreign key (fkidcliente) references clientes(idcliente)
+);
+
+);
