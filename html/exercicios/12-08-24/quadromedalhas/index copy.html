@@ -10,6 +10,52 @@
     />
 
     <title>quadrodemedalhas</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f8f8f8;
+        color: #555;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+      .gold {
+        background-color: rgba(255, 215, 0, 0.3); /* Cor de fundo para o país com mais medalhas de ouro */
+      }
+
+      .silver {
+        background-color: rgba(192, 192, 192, 0.3); /* Cor de fundo para o país com mais medalhas de prata */
+      }
+
+      .bronze {
+        background-color: rgba(205, 127, 50, 0.3); /* Cor de fundo para o país com mais medalhas de bronze */
+      }
+    </style>
   </head>
   <body>
     <h2 style="color: rgb(0, 0, 0); font-family: Arial, sans-serif">
@@ -27,21 +73,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="gold">
           <td>EUA</td>
           <td>40</td>
           <td>44</td>
           <td>42</td>
           <td>126</td>
         </tr>
-        <tr>
+        <tr class="silver">
           <td>China</td>
           <td>40</td>
           <td>27</td>
           <td>24</td>
           <td>91</td>
         </tr>
-        <tr>
+        <tr class="bronze">
           <td>Japão</td>
           <td>20</td>
           <td>12</td>
