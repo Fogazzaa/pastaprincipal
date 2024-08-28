@@ -30,7 +30,7 @@ class AppController {
       const {email, senha } = req.body;
       const login = users.find((login) => login.email == email && login.senha == senha);
       if(login) {
-        res.status(200).send({ message: "Autenticaçãobem sucedida" });
+        res.status(200).send({ message: "Autenticação bem sucedida" });
       }
       else{
         res.status(404).send({ message: "Email ou senha incorreta" });
