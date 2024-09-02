@@ -1,0 +1,62 @@
+
+/* estilos aplicados as web site exemplo01 */
+
+/* seletor universal - seleciona todos os elemnetos das páginas e aplica etilos comuns padronizados */
+
+*{
+    margin: 0; /* remove a margem padrão de todos os elementos */
+    padding: 0; /* remove a margem padrão de todos os elementos */
+    box-sizing: border-box; /* inclui bordas e preenchimentos no calculo de altura e largura dos elementos */
+} /* fechamento seletor universal */
+
+body{
+    font-family: Arial, sans-serif; /* define a fonte da pagina como arial, como uma alternativa sans-serif */
+    background-color: rgb(57, 57, 97); /* define a cor de fundo / corpo html */
+    color: whitesmoke; /* define a cor de texto com uma cor suave de branco */
+} /* fechamento do body */
+
+header{ /* estilo do cabeçalho */
+    background-color: #343477; /* cor de fundo em hexadecimal */
+    padding: 40px;
+    text-align: center; /* alinha o texto do cabeçalho no centro */
+} /* fechamento header */
+
+header button{
+    right: 20px; /* alinha o botão na direita com 20px de distancia da borda direita da pagina */
+    top: 30px; /* alinha o botão com 30px de distância da borda superior */
+    position: absolute; /* posiciona o botão de forma absoluta em relação ao header*/
+    color: white;
+    background-color: rgb(42, 49, 108);
+    padding: 10px 20px; /* define o espaço interno  do botão em 10px (verical) e 20px (horizontal) */
+    border-radius: 10px; /* arredonda os cantos do botão */
+    border-color: white; /* borda branca */
+    cursor: pointer; /* define o cursor como ponteiro ao passar pelo botão */
+} /* fechamento header button*/
+
+header h3{
+    margin: 0px;
+    padding: 0px;
+}
+
+footer{ /* estilo do rodapé */
+    background-color: #343477; /* cor de fundo em hexadecimal */
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0%;
+    width: 100%; /* define a largura do rodapé como 100% da pagina*/
+} /* fechamento footer */
+
+main{
+    text-align: center;
+    padding: 40px;
+} /* fechamento main */
+
+main section h2{
+    left: 20px;
+    text-align: center;
+} /* fechamento main section h2 */
+
+main img{
+    max-width: 300px; /* define a largura máxima das imagens dentro da main como 150px */
+} /* fechamento main img */
