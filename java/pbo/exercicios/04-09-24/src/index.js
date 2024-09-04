@@ -16,7 +16,7 @@ class AppController {
     // define as rotas da nossa API
 
     const apiRoutes = require("./routes/apiRoutes"); // chama/linka a a pasta routes e o apiRoutes para o arquivo index.js
-    this.express.use("/project-senai/api/v1", apiRoutes); // url default do projeto '/project-senai/api/v1'
+    this.express.use("/controlenumeros/api/par", apiRoutes); // url default do projeto '/project-senai/api/v1'
 
     this.express.get("/health/", (req, res) => {
       // define uma rota 'GET' para o caminho '/health/'
