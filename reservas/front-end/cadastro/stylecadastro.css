@@ -24,8 +24,8 @@ header h3 {
 }
 
 header button {
-  top: 68%;
-  right: 51.3%;
+  top: 77%;
+  right: 50%;
   position: absolute;
   color: #980000; /*980000*/
   background-color: transparent;
@@ -38,15 +38,15 @@ header button {
 
 section img {
   position: absolute;
-  left: 39.8%;
-  top: 250px;
+  left: 41%;
+  top: 193px;
   width: 14%;
 }
 
 .rectangle {
   position: absolute; /* Posiciona o retângulo vertical em relação ao body */
-  top: 30%;
-  left: 38.8%;
+  top: 28%;
+  left: 38.4%;
   width: 245px; /* Largura do retângulo vertical */
   height: 335px; /* Altura do retângulo vertical */
   background-color: #d9d9d9; /* Cor de fundo do retângulo, ajustável conforme necessário */
