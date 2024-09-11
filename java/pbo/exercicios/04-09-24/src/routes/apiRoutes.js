@@ -5,6 +5,8 @@ const router = require("express").Router(); // router será utilizado para defin
 const controleNumber = require("../controllers/controleNumber");
 
 // rota post para '/teacher'
-router.post("/number/",controleNumber.postNumber);
+router.post("/parimpar/",controleNumber.postPar);
+router.post("/primo/",controleNumber.postPrimo);
+router.get('/teacher/',controleNumber.getNumbers);
 
 module.exports = router;
