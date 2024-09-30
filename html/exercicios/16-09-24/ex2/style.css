@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: arial, sans-serif;
+  background-color: #c2c2c2;
+  color: black;
+  /*garante que o body ocupe toda a altura da tela*/
+  min-height: 100vh;
+}
+
+header {
+  background-color: #c2c2c2;
+  padding: 20px;
+  color: rgb(30, 30, 30);
+  text-align: center;
+}
+
+.logo {
+  /*Uso do flexbox para alinhar a logo e o título*/
+  display: flex;
+  /*Alinha verticalmente os itens da div em questao*/
+  align-items: center;
+  /*Centraliza os itens horizontalmente*/
+  justify-content: center;
+
+  background-color: rgb(255, 255, 255);
+
+  border-radius: 10px;
+
+  width: 100%;
+}
+
+img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 150px;
+  margin-right: 10px;
+  margin: 25px;
+}
+
+header nav ul{
+  display: flex;
+  justify-content: center;
+}
+
+header nav ul li a {
+  color: gray;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+header nav ul li {
+  list-style: none;
+  color: transparent;
+  margin-top: 0 15px;
+  margin-right: 15px;
+}
+
+header .logo img {
+  max-width: 70px;
+  margin-right: 15px;
+}
+
+header .logo h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+header p {
+  margin: 15px;
+}
+
+main{
+  padding: 30px;
+}
+
+main section{
+  margin-bottom: 50px;
+}
+
+#home{
+  background-color: #d4d4d4;
+  padding: 15px;
+  padding-left: 20px;
+  text-align: center;
+  justify-content: center;
+  border-radius: 15px;
+  width: 100%;
+}
+
+#home h2{
+  color: rgb(116, 116, 116);
+  padding: 5px;
+}
+
+#home p{
+  color: rgb(116, 116, 116);
+}
+
+#eventos h2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+  color: rgb(116, 116, 116);
+}
+
+.eventos-container{
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  background-color: #d4d4d4;
+  border-radius: 15px;
+  color: rgb(116, 116, 116);
+}
+
+.eventos-item{
+  background-color: rgb(83, 83, 83);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+footer{
+  background-color: black;
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
