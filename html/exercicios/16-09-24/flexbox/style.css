@@ -1,4 +1,8 @@
 
+*{
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
 .container{
     display: flex;
     flex-direction: row; /* alinha os itens na horizontal/linha */
@@ -7,4 +11,28 @@
     align-items: center; /* alinha os itens ao centro no eixo transversal */
     height: 100%;
     border: 2px solid #000; 
+    padding: 30px;
+}
+
+header h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 25px;
+}
+
+header, footer{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
 }
