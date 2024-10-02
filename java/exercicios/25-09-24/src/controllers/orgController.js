@@ -49,7 +49,8 @@ module.exports = class orgController {
 
   static async updateOrg(req, res) {
     // desestrutura e recupera os dados enviados via corpo da requisição
-    const { nome, email, senha, telefone, id_organizador } = req.body;
+    const orgId = req.params.id_organizador;
+    const { nome, email, senha, telefone } = req.body;
     if (!nome || !email || !senha || !telefone) {
       // valida se todos os campos foram preenchidos
       return res
@@ -57,7 +58,7 @@ module.exports = class orgController {
         .json({ error: "Todos os campos devem ser preenchidos" });
     }
     // procura indice do user no array 'users' pelo cpf
-    const orgIndex = orgs.findIndex((org) => org.id_organizador == id_organizador);
+    const orgIndex = orgs.findIndex((org) => org.id_organizador == orgId);
     // se não for encontrado o 'userindex' equivale a -1
     if (orgIndex == -1) {
       return res.status(400).json({ error: "Usuário não encontrado" });
