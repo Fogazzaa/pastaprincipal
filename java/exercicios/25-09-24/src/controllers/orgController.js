@@ -67,7 +67,7 @@ module.exports = class orgController {
     const orgId = req.params.id_organizador;
     const orgIndex = orgs.findIndex((org) => org.id_organizador == orgId);
     // se não for encontrado o 'userindex' equivale a -1
-    if (orgIndex === -1) {
+    if (orgIndex == -1) {
       return res.status(400).json({ error: "Usuário não encontrado" });
     }
     // removendo usuário da array 'users'

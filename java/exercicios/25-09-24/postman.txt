@@ -1,0 +1,12 @@
+post:
+http://localhost:5000/api/v1/org/
+
+{
+  "nome": "a",
+  "email": "email@exemplo.com",
+  "senha": "senha123",
+  "telefone": "10101010101"
+}
+
+delete:
+http://localhost:5000/api/v1/org/1
