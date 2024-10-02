@@ -20,13 +20,19 @@ module.exports = class orgController {
     }
 
     // Verifica se já existe um usuário com o mesmo telefone
-    const existingOrg = orgs.find((org) => orgs.telefone === telefone);
-    if (existingOrg) {
+    const existingOrgtelefone = orgs.find((org) => org.telefone === telefone);
+    if (existingOrgtelefone) {
       return res.status(400).json({ error: "Telefone já cadastrado" });
+    }
+
+    const existingOrgemail = orgs.find((org) => org.email === email);
+    if (existingOrgemail) {
+      return res.status(400).json({ error: "Email já cadastrado" });
     }
 
     // Cria e adiciona novo usuário
     id_organizador = id_organizador + 1;
+
     const newOrg = { nome, email, senha, telefone, id_organizador};
     orgs.push(newOrg);
 
@@ -43,7 +49,7 @@ module.exports = class orgController {
 
   static async updateOrg(req, res) {
     // desestrutura e recupera os dados enviados via corpo da requisição
-    const { nome, email, senha, telefone } = req.body;
+    const { nome, email, senha, telefone, id_organizador } = req.body;
     if (!nome || !email || !senha || !telefone) {
       // valida se todos os campos foram preenchidos
       return res
@@ -51,9 +57,9 @@ module.exports = class orgController {
         .json({ error: "Todos os campos devem ser preenchidos" });
     }
     // procura indice do user no array 'users' pelo cpf
-    const orgIndex = orgs.findIndex((org) => org.telefone === telefone);
+    const orgIndex = orgs.findIndex((org) => org.id_organizador == id_organizador);
     // se não for encontrado o 'userindex' equivale a -1
-    if (orgIndex === -1) {
+    if (orgIndex == -1) {
       return res.status(400).json({ error: "Usuário não encontrado" });
     }
     // atualiza os dados do usuario na array 'users'
