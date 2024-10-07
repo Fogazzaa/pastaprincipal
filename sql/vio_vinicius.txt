@@ -4,16 +4,33 @@
  use vio_vinicius;
 
  create table if not exists usuario(
-      id_usuario int primary key auto_increment,
-      nome varchar(255) not null, 
-      email varchar(255) unique not null,
-      telefone char(11) not null,
-      senha varchar(255) not null,
-      datanascimento date not null
+	id_usuario int primary key auto_increment,
+	nome varchar(255) not null, 
+	email varchar(255) unique not null,
+	telefone char(11) not null,
+	senha varchar(255) not null,
+	datanascimento date not null
  );
 
+ create table if not exists organizador(
+	id_organizador int not null primary key auto_increment,
+	nome_organizador varchar(255) not null, 
+	email_organizador varchar(255) unique not null,
+	telefone_organizador char(11) not null,
+	senha_organizador varchar(255) not null
+ );
+
+ create table if not exists eventos(
+	id_evento int not null primary key auto_increment,
+	nome_evento varchar(255) not null,
+	data_evento date not null,
+	local_evento varchar(255) not null,
+	fkevento int not null,
+	foreign key (fkevento)
+	references organizador(id_nome_organizador));
+
 insert into usuario (nome, email, senha, telefone, datanascimento) values
-	('João Silva', 'joao.silva@example.com','senha123','16123456789','1990-01-15'),
+	('João Silva','joao.silva@example.com','senha123','16123456789','1990-01-15'),
 	('Maria Oliveira','maria.oliveira@example.com','senha123','16987654321','1985-06-23'),
 	('Carlos Pereira','carlos.pereira@example.com','senha123','16123987456','1992-11-30'),
 	('Ana Souza','ana.souza@example.com','senha123','16456123789','1987-04-18'),
@@ -33,3 +50,15 @@ insert into usuario (nome, email, senha, telefone, datanascimento) values
 	('Mariana Batista','mariana.batista@example.com','senha123','16147258369','1998-09-22'),
 	('Fábio Freitas','fabio.freitas@example.com','senha123','16369147258','1994-04-16'),
 	('Isabela Cardoso','isabela.cardoso@example.com','senha123','16258369147','1985-11-08');
+
+insert into organizador (id_nome_organizador, email_organizador, senha_organizador, telefone_organizador) values
+	('Organização ABC','contato@abc.com','senha123','11111222333'),
+	('Eventos XYZ','info@xyz.com','senha123','11222333444'),
+	('Festivais BR','contato@festbr.com','senha123','11333444555'),
+	('Eventos GL','support@gl.com','senha123','11444555666'),
+	('Eventos JQ','contact@jq.com','senha123','11555666777');
+
+insert into eventos (nome_evento, data_evento, local_evento, fkevento) values
+	('Festival de Verão','2024-12-15,','Praia Central','Organização ABC'),
+	('Congresso de Tecnologia','2024-11-20','Centro de Convenções','Eventos XYZ'),
+	('Show Internacional','2024-10-30','Arena Principal','Festivais BR');
