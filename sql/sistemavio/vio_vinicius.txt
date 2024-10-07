@@ -136,7 +136,7 @@ insert into ingressos (tipo_ingresso, preco_ingresso, fkidevento) values
 	 ('2024-10-31', 1, 1),
 	 ('2024-10-31', 1, 1);
 	 
-	select timestampdiff(month, '1990-01-01', '2024-10-31');
+	timestampdiff('year', '1990-01-01', '1995-12-31');
 
 	curdate(YYYY-MM-DD);
 
