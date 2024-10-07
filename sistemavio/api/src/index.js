@@ -1,5 +1,6 @@
 const express = require("express"); //Importa o módulo Express
-const testConnect = require('./db/testConnect')
+const cors = require("cors");
+const testConnect = require("./db/testConnect");
 
 class AppController {
   //Define uma classe para organizar a lógica da aplicação
@@ -13,6 +14,7 @@ class AppController {
   middlewares() {
     //Permite que a aplicação receba dados no formato JSON nas requisições
     this.express.use(express.json());
+    this.express.use(cors());
   }
 
   routes() {
