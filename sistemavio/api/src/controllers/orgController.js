@@ -78,3 +78,4 @@ module.exports = class orgController {
     return res.status(200).json({ message: "Usuário apagado", orgs });
   }
 };
+
