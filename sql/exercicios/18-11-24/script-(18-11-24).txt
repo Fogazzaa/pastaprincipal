@@ -1,0 +1,147 @@
+
+ select
+  i.id_ingresso, i.tipo, ic.quantidade, i.preco as preco_unitario, round((i.preco * ic.quantidade), 2) as valor_total
+ from
+  ingresso i left join ingresso_compra ic
+ on
+  i.id_ingresso = ic.fk_id_ingresso
+ order by
+  i.id_ingresso;
+
+-------
+
+ select
+  i.id_ingresso, i.tipo, ic.quantidade, i.preco as preco_unitario, round((i.preco * ic.quantidade), 2) as valor_total
+ from
+  ingresso i left join ingresso_compra ic
+ on
+  i.id_ingresso = ic.fk_id_ingresso
+ where
+  ic.fk_id_ingresso is null
+ order by
+  i.id_ingresso;
+
+-------
+
+ select
+  c.id_compra, c.data_compra, ic.quantidade, ic.fk_id_ingresso
+ from
+  ingresso_compra ic right join compra c
+ on
+  c.id_compra = ic.fk_id_compra
+ order by
+  c.id_compra;
+
+-------
+
+ select
+  c.id_compra, c.data_compra, ic.quantidade, ic.fk_id_ingresso
+ from
+  ingresso_compra ic right join compra c
+ on
+  c.id_compra = ic.fk_id_compra
+ where
+  ic.fk_id_compra is null
+ order by
+  c.id_compra;
+
+-------
+
+ select
+  c.id_compra, i.id_ingresso, i.tipo, ic.quantidade
+ from
+  compra c
+ right join
+  ingresso_compra ic on c.id_compra = ic.fk_id_compra
+ right join
+  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+ order by
+  c.id_compra;
+
+-------
+
+ select
+  c.id_compra, i.id_ingresso, i.tipo, ic.quantidade
+ from
+  compra c
+ left join
+  ingresso_compra ic on c.id_compra = ic.fk_id_compra
+ left join
+  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+ order by
+  c.id_compra;
+
+--------
+
+
+ select
+  c.id_compra, i.id_ingresso, i.tipo, ic.quantidade
+ from
+  compra c
+ right join
+  ingresso_compra ic on c.id_compra = ic.fk_id_compra
+ right join
+  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+
+union
+
+ select
+  c.id_compra, i.id_ingresso, i.tipo, ic.quantidade
+ from
+  compra c
+ left join
+  ingresso_compra ic on c.id_compra = ic.fk_id_compra
+ left join
+  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+ order by
+  id_compra;
+
+-------
+
+ select
+  e.nome as evento,
+  i.tipo as ingresso
+ from
+  evento e cross join ingresso i
+ order by
+  e.nome;
+
+-------
+
+ select distinct
+  e.nome as evento,
+  i.tipo as ingresso
+ from
+  evento e cross join ingresso i
+ order by
+  e.nome;
+
+-------
+
+ select
+  u.id_usuario, u.name, max(c.data_compra) as ultima_compra
+ from
+  compra c
+ left join
+  usuario u on u.id_usuario = fk_id_usuario
+ where
+  c.id_compra is not null
+ group by
+  u.id_usuario
+ order by
+  u.id_usuario;
+
+-------
+
+ select
+  u.id_usuario, u.name, max(c.data_compra) as ultima_compra
+ from
+  compra c
+ right join
+  usuario u on u.id_usuario = fk_id_usuario
+ group by
+  u.id_usuario
+ order by
+  u.id_usuario;
+
+------

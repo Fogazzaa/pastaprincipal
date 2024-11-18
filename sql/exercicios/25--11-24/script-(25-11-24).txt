@@ -1,0 +1,78 @@
+
+ select
+  e.id_evento, o.id_organizador, e.nome, o.nome, e.local, e.data_hora
+ from
+  evento e
+ join
+  organizador o
+ where
+  e.data_hora <= '2024-11-13 00:00:00'
+ order by
+  e.id_evento;
+
+---
+
+ select
+  i.id_ingresso, e.nome, ic.quantidade, c.data_compra
+ from
+  compra c
+ join
+  ingresso_compra ic on c.id_compra = ic.fk_id_compra
+ join
+  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+ join
+  evento e on i.fk_id_evento = e.id_evento
+ where
+  c.data_compra between '2024-01-01 00:00:00' and '2024-12-31 23:59:59'
+ order by
+  e.id_evento;
+
+---
+
+ select
+  o.id_organizador, o.nome as nome_organizador, coalesce(e.nome, 'Nenhum Evento') as nome_evento
+ from
+  organizador o
+ left join
+  evento e on o.id_organizador = e.fk_id_organizador
+ order by
+  o.id_organizador;
+
+---
+
+ select
+  e.id_evento, e.nome as nome_evento, coalesce(sum(ic.quantidade), '0') as quantidade_ingressos
+ from
+  ingresso_compra ic
+ join
+  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+ join
+  evento e on i.fk_id_evento = e.id_evento
+ group by
+  e.id_evento
+ order by
+  e.id_evento;
+
+---
+
+ select
+  u.id_usuario, i.id_ingresso, e.id_evento, ic.quantidade
+ from
+  usuario
+ join
+   ic on c.id_compra = ic.fk_id_compra
+ right join
+  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+
+union
+
+ select
+  c.id_compra, i.id_ingresso, i.tipo, ic.quantidade
+ from
+  compra c
+ left join
+  ingresso_compra ic on c.id_compra = ic.fk_id_compra
+ left join
+  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+ order by
+  id_compra;
