@@ -5,15 +5,17 @@
   evento e
  join
   organizador o
+ on
+  e.fk_id_organizador = o.id_organizador
  where
-  e.data_hora <= '2024-11-13 00:00:00'
+  e.data_hora >= '2024-11-13 00:00:00'
  order by
   e.id_evento;
 
 ---
 
  select
-  i.id_ingresso, e.nome, ic.quantidade, c.data_compra
+  i.id_ingresso, i.tipo as nome_ingresso, e.nome, ic.quantidade, c.data_compra
  from
   compra c
  join
