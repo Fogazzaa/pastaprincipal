@@ -46,7 +46,7 @@
   ingresso_compra ic
  join
   ingresso i on ic.fk_id_ingresso = i.id_ingresso
- join
+ right join
   evento e on i.fk_id_evento = e.id_evento
  group by
   e.id_evento
@@ -55,24 +55,38 @@
 
 ---
 
- select
-  u.id_usuario, i.id_ingresso, e.id_evento, ic.quantidade
- from
-  usuario
- join
-   ic on c.id_compra = ic.fk_id_compra
- right join
-  ingresso i on ic.fk_id_ingresso = i.id_ingresso
+select 
+    u.name as nome_usuario,
+    coalesce(e.nome, 'Nenhum Evento') as evento,
+    coalesce(sum(ic.quantidade), 0) as quantidade_ingressos
+from 
+    usuario u
+left join 
+    compra c on u.id_usuario = c.fk_id_usuario
+left join 
+    ingresso_compra ic on c.id_compra = ic.fk_id_compra
+left join 
+    ingresso i on ic.fk_id_ingresso = i.id_ingresso
+left join 
+    evento e on i.fk_id_evento = e.id_evento
+group by 
+    u.id_usuario, e.id_evento
 
 union
 
- select
-  c.id_compra, i.id_ingresso, i.tipo, ic.quantidade
- from
-  compra c
- left join
-  ingresso_compra ic on c.id_compra = ic.fk_id_compra
- left join
-  ingresso i on ic.fk_id_ingresso = i.id_ingresso
- order by
-  id_compra;
+select 
+    'Nenhum Usuário' as nome_usuario,
+    e.nome as evento,
+    0 as quantidade_ingressos
+from
+    evento e
+left join 
+    ingresso i on e.id_evento = i.fk_id_evento
+left join 
+    ingresso_compra ic on i.id_ingresso = ic.fk_id_ingresso
+left join 
+    compra c on ic.fk_id_compra = c.id_compra
+left join 
+    usuario u on c.fk_id_usuario = u.id_usuario
+where 
+    ic.fk_id_ingresso is null;
