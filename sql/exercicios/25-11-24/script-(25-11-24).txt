@@ -12,7 +12,7 @@
  order by
   e.id_evento;
 
----
+
 
  select
   i.id_ingresso, i.tipo as nome_ingresso, e.nome, ic.quantidade, c.data_compra
@@ -29,7 +29,7 @@
  order by
   e.id_evento;
 
----
+
 
  select
   o.id_organizador, o.nome as nome_organizador, coalesce(e.nome, 'Nenhum Evento') as nome_evento
@@ -40,7 +40,7 @@
  order by
   o.id_organizador;
 
----
+
 
  select
   e.id_evento, e.nome as nome_evento, coalesce(sum(ic.quantidade), '0') as quantidade_ingressos
@@ -55,7 +55,7 @@
  order by
   e.id_evento;
 
----
+
 
 select 
     u.name as nome_usuario,
