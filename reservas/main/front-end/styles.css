@@ -12,11 +12,12 @@ body {
   background-position: center center;
   background-attachment: fixed;
   color: whitesmoke;
-  height: 100%;
+  height: 100vh;
   margin: 0;
 }
 
 header {
+  height: 13vh;
   background-color: #c41212;
   padding: 1.1%;
   border-bottom: 3px solid whitesmoke;
@@ -75,16 +76,17 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 81vh;
 }
 
 footer {
-  font-family: 'Trebuchet MS', sans-serif;
+  font-family: "Trebuchet MS", sans-serif;
   position: absolute;
-  bottom: 0%;
+  bottom: 0;
   background-color: #980000;
-  height: 65px;
+  height: 8vh;
   width: 100%;
-  border-top: 3px solid whitesmoke;
+  border-top: 2px solid whitesmoke;
 }
 
 footer .desenvolvido p {
@@ -100,6 +102,17 @@ footer .desenvolvido p {
   background-color: #c41212;
   padding: 3%;
   border-bottom: 3px solid whitesmoke;
+}
+
+.logo-inicial img {
+  position: relative;
+  top: 40%;
+  left: 6%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  background-color: white;
+  padding: 6px;
+  border-radius: 20px;
 }
 
 main .fundo-inicial img {
@@ -156,12 +169,11 @@ main #cadastro #formulario-cadastro {
   height: 100%;
   padding: 25px;
   padding-inline: 30px;
-  padding-block: 18px;
-  margin-top: 30%;
-  padding-top: 70px;
+  padding-block: 12px;
+  padding-top: 60px;
 }
 
-main #cadastro #formulario-cadastro .nome_usuario input {
+main #cadastro #formulario-cadastro .nome input {
   border-style: none;
   margin-bottom: 10px;
   border-radius: 15px;
@@ -279,7 +291,6 @@ main #login #formulario-login {
   padding: 25px;
   padding-inline: 30px;
   padding-block: 15px;
-  margin-top: 45%;
   padding-top: 70px;
 }
 
@@ -345,218 +356,230 @@ main #login #formulario-login .botoes .login input:hover {
 
 /* --- principal --- */
 
-.logo img {
-  position: absolute;
-  top: 10%;
-  left: 8.8%;
+.logo-principal img { /*logo*/
+  position: relative;
+  top: 50%;
+  left: 65%;
   transform: translate(-50%, -50%);
-  width: 190px;
+  width: 180px;
   background-color: white;
-  padding: 5px;
+  padding: 6px;
   border-radius: 20px;
 }
 
-.campos {
-  display: flex;
-  justify-content: space-between;
+ /* Estilo para o corpo principal da página */
+.body-principal { /*tudo*/
+  font-family: Arial, sans-serif;
+  background-color: #d6d6d6;
+  color: whitesmoke;
+  height: 100%;
+}
+
+.header-principal { /*cabeçalho principal*/
+  height: 12vh;
+  background-color: #c41212;
+  border-bottom: 3px solid whitesmoke;
   width: 100%;
-  max-width: 1400px;
-  max-height: 520px;
-  font-family: "Trebuchet MS", sans-serif;
-}
-
-.campos .usuario button {
-  border: solid #d64141;
-  padding: 9px 9px;
-  background-color: #ff9797;
   display: flex;
-  flex-wrap: wrap;
-  border-radius: 25px;
+  flex-direction: row; /*Alinha os itens (horizontalmente)*/
 }
 
-.campos .barraesquerda .usuario button img {
-  width: 20%;
-  height: auto;
+.header-principal .usuario {
+  position: absolute; /*Define a posição como absoluta, permitindo posicionar em relação ao contêiner*/
+  right: 7%;
+  top: 3%;
 }
 
-.campos .barraesquerda .usuario button p {
-  font-size: 13px;
-  width: 20%;
-  margin-left: 8px;
-  margin-top: 5px;
-  color: whitesmoke;
-  font-weight: bold;
+.header-principal .usuario img {
+  width: 47px;
+  height: 47px;
+  position: absolute; /*Define a posição como absoluta, permitindo posicionar em relação ao contêiner*/
+  right: -2px;
+  top: -2px;
+  cursor: pointer;
 }
 
-.campos .barraesquerda .usuario button p:nth-of-type(2) {
-  font-size: 10px;
-  width: 100%;
-  color: whitesmoke;
-  font-weight: bold;
-  margin-left: 17%;
+.header-principal .logout {
+  position: absolute;
+  right: 2%;
+  top: 3%;
 }
 
-.campos .salasreservadas button {
-  border: solid #d64141;
-  padding: 10px 10px;
-  background-color: #ff9797;
+.header-principal .logout img {
+  width: 47px;
+  height: 47px;
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  cursor: pointer;
+}
+
+.main-principal { /*tudo do meio*/
   display: flex;
-  flex-wrap: wrap;
-  border-radius: 25px;
-}
-
-.campos .barraesquerda .salasreservadas button img {
-  width: 20%;
-  height: 24%;
-}
-
-.campos .barraesquerda .salasreservadas button p {
-  font-size: 13px;
-  width: 20%;
-  margin-left: 8px;
-  margin-top: 5px;
-  color: whitesmoke;
-  font-weight: bold;
-}
-
-.barraesquerda,
-.meio,
-.barradireita {
-  background-color: #ff7f7f;
-  border-radius: 40px;
-  padding: 20px;
-  margin: 10px;
-}
-.barraesquerda {
-  flex: 1;
-  max-width: 200px;
-  margin-top: 120px;
-  background-color: #ffb8b8;
-  border: solid #ff6666;
-  border-width: 8px;
-}
-.meio {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
+  justify-content: center; /*Centraliza horizontalmente dentro do contêiner */
+  align-items: center; /*Centraliza verticalmente dentro do contêiner */
+  height: 82%;
+  justify-content: center;
   align-items: center;
-  margin-top: 50px;
-  background-color: #ffb8b8;
-  border: solid #ff6666;
-  border-width: 8px;
-}
-.barradireita {
-  flex: 1;
-  max-width: 300px;
-  margin-top: 50px;
-  background-color: #ffb8b8;
-  border: solid #ff6666;
-  border-width: 8px;
-}
-.salas {
-  background-color: #eb8796;
-  border-radius: 30px;
-  padding: 20px 10px;
-  margin: 10px 0;
-  width: 100%;
   height: 100%;
-  text-align: center;
+  width: 100%;
+  justify-items: center;
 }
 
-.salas div span {
-  font-size: 10px;
-  background-color: #d64141;
-  border-radius: 15px;
-  padding: 8px 8px;
-  margin: 5px;
-  width: 100%;
-  height: 100%;
-  text-align: start;
+/*Estilo para a tabela*/
+.main-principal #sala-tabela { /*tabela*/
+  margin-top: 4%;
+  margin-bottom: 6%;
+  width: 85%;
+  border-radius: 10px;
+  background-color: #b5b5b5;
+}
+
+/*Estilo para o cabeçalho da tabela*/
+.main-principal #sala-tabela thead {
+  padding: 5%;
+}
+
+/*Estilo para as células de cabeçalho (th)*/
+.main-principal #sala-tabela thead tr th { /*Estilo para as células de cabeçalho (th)*/
+  background-color: #d9d9d9;
+}
+
+/*é a parte de filtrar por data e buscar por nome*/
+.main-principal #sala-tabela thead tr th label {
+  color: #6d6d6d;
+  margin-inline: 3%; /*Adiciona uma margem horizontal (esquerda e direita) ao redor do label*/
+}
+
+.main-principal #sala-tabela thead tr th #filtro-data { /*é o escrito filtrar data*/
+  color: #6d6d6d;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+}
+
+.main-principal #sala-tabela thead tr th #filtro-nome { /*é o escrito buscar sala*/
+  color: #6d6d6d;
+  padding: 6px;
+  border: none; /*Remove qualquer borda e garante bordas não visíveis*/
+  border-radius: 10px;
+}
+
+.main-principal #sala-tabela #sala-list-tabela tr:last-child td { /*última celula da tabela*/
+  border-bottom: #b5b5b5 solid 9px;
+}
+
+.main-principal #sala-tabela thead tr .salas-disponiveis { /*celula de salas disponiveis*/
+  font-size: x-large;
+  font-weight: bolder; /*Aumenta o peso da fonte*/
+  padding-block: 15px; /*Adiciona um preenchimento na parte superior e inferior*/
+  padding-right: 98px; /*Adiciona um preenchimento à direita*/
+  padding-left: 5px;   /*Adiciona um preenchimento à esquerda*/
+  background-color: #d9d9d9;
+  color: #6d6d6d;
+  margin: 10px;
+  border-top-left-radius: 10px;  /*Arredonda o canto superior e esquerdo*/
+}
+
+.main-principal #sala-tabela thead tr th #filtrar {  /*botão filtrar*/
+  color: #ffffff;
+  padding: 9px;
+  background-color: #c41212;
+  border: none;
+  border-radius: 10px;
   font-weight: bold;
 }
 
-.salas h2 {
-  margin: 0 0 10px 0;
-  background-color: #ff6666;
-  border-radius: 15px;
-  padding: 3px 3px;
-  margin: 5px;
-  width: 100%;
-  font-size: 16px;
-}
-
-.salas div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.dias {
-  background-color: #eb8796;
-  border-radius: 30px;
-  padding: 20px;
-  margin: 10px 0;
-  width: 100%;
-  text-align: center;
-}
-
-.dias div span {
-  background-color: #d64141;
-  border-radius: 15px;
-  padding: 10px 20px;
-  margin: 5px;
+.main-principal #sala-tabela thead tr th #filtrar:hover { /*botão filtrar estilização do mouse*/
+  color: #ffffff;
+  padding: 9px;
+  background-color: #d63232;
+  border: none;
+  border-radius: 10px;
   font-weight: bold;
-  font-size: 10px;
+  cursor: pointer; /*Muda o cursor para uma mão*/
 }
 
-.dias h2 {
-  margin: 0 0 10px 0;
-  background-color: #ff6666;
-  border-radius: 15px;
-  padding: 5px 5px;
-  margin: 5px;
+.main-principal #sala-tabela #sala-list-tabela tr { /*linhas da tabela*/
+  color: white;
+  font-size: large;
+  background-color: #949494;
   width: 100%;
-  font-size: 16px;
 }
 
-.dias div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/*Segunda coluna do cabeçalho da tabela*/
+.main-principal #sala-tabela thead tr th:nth-child(2) {
+  width: 2%;
 }
 
-.horarios {
-  background-color: #eb8796;
-  border-radius: 30px;
-  padding: 20px;
-  margin: 10px 0;
+/*Terceira coluna do cabeçalho da tabela*/
+.main-principal #sala-tabela thead tr th:nth-child(3) {
+  width: 2%;
+}
+
+/*Quarta coluna do cabeçalho da tabela*/
+.main-principal #sala-tabela thead tr th:nth-child(4) {
+  width: 0.1%;
+}
+
+/*Quinta coluna do cabeçalho da tabela*/
+.main-principal #sala-tabela thead tr th:nth-child(5) {
+  width: 1%;
+  border-top-right-radius: 10px;
+}
+
+.main-principal #sala-tabela #sala-list-tabela :hover {  /*aplicar estilos nas linhas da tabela*/
+  color: white;
+  font-size: large;
+  background-color: #a0a0a0;
+  cursor: pointer; /*Muda o cursor para uma mão*/
+}
+
+.main-principal #sala-tabela #sala-list-tabela tr td { /*celulas da sala-list-tabela*/
+  padding-block: 1%;
+  padding-left: 2%;
+  padding-right: 1%;
+  width: 1%;
+  font-size: large;
+  border-top: solid #b5b5b5 8px;
+  font-weight: bold; /*Define o texto em negrito*/
+}
+
+.main-principal #sala-tabela #sala-list-tabela tr td:first-child { /*primeira célula da sala-list-tabela*/
+  padding-block: 1%;
+  padding-left: 2%;
+  padding-right: 1%;
+  width: 1%;
+  font-size: large;
+  border-top: solid #b5b5b5 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-left: #b5b5b5 solid 10px;
+}
+
+.main-principal #sala-tabela #sala-list-tabela tr td:last-child { /*última célula*/
+  padding-block: 1%;
+  padding-left: 2%;
+  padding-right: 1%;
+  width: 1%;
+  font-size: large;
+  border-top: solid #b5b5b5 8px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-right: #b5b5b5 solid 10px;
+}
+
+.footer-principal { /*rodapé*/
+  font-family: "Trebuchet MS", sans-serif;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /*Ajusta a posição para centralizar o rodapé*/
+  background-color: #980000;
+  height: 8%;
   width: 100%;
-  text-align: center;
-}
-
-.horarios div span {
-  background-color: #d64141;
-  border-radius: 15px;
-  padding: 10px 20px;
-  margin: 5px;
-  font-weight: bold;
-  font-size: 10px;
-}
-
-.horarios h2 {
-  margin: 0 0 10px 0;
-  background-color: #ff6666;
-  border-radius: 15px;
-  padding: 5px 5px;
-  margin: 5px;
-  width: 100%;
-  font-size: 16px;
-}
-
-.horarios div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  border-top: 2px solid whitesmoke;
+  padding: 2%;
 }
 
 /* --- perfil --- */
@@ -567,13 +590,13 @@ main #perfil #formulario-perfil .logo img {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 200px;
-  background-color: white;
+  background-color: rgb(239, 239, 239);
   padding: 5px;
   border-radius: 20px;
 }
 
 main #perfil #formulario-perfil {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -582,58 +605,82 @@ main #perfil #formulario-perfil {
   width: 100%;
   height: 100%;
   padding-inline: 150px;
-  padding-block: 18px;
-  margin-top: 10%;
+  padding-block: 14px;
   padding-top: 70px;
 }
 
-main #perfil #formulario-perfil .nome_usuario input {
-  background-color: #dbdbdb;
+main #perfil #formulario-perfil #nome {
+  background-color: #ebebeb;
   border-style: none;
   margin-bottom: 10px;
   border-radius: 15px;
-  padding-inline: 10px;
-  padding-right: 100px;
-  padding-block: 15px;
+  padding-left: 5%;
+  padding-right: 95%;
+  padding-block: 8px;
   font-size: medium;
   font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
 }
 
-main #perfil #formulario-perfil .email input {
-  background-color: #dbdbdb;
+main #perfil #formulario-perfil #email {
+  background-color: #ebebeb;
   border-style: none;
   margin-bottom: 10px;
   border-radius: 15px;
-  padding-inline: 10px;
-  padding-right: 100px;
-  padding-block: 15px;
+  padding-left: 5%;
+  padding-right: 95%;
+  padding-block: 8px;
   font-size: medium;
   font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
 }
 
-main #perfil #formulario-perfil .NIF input {
-  background-color: #dbdbdb;
+main #perfil #formulario-perfil #NIF {
+  background-color: #ebebeb;
   border-style: none;
   margin-bottom: 10px;
   border-radius: 15px;
-  padding-inline: 10px;
-  padding-right: 100px;
-  padding-right: 100px;
-  padding-block: 15px;
+  padding-left: 5%;
+  padding-right: 95%;
+  padding-block: 8px;
   font-size: medium;
   font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
 }
 
-main #perfil #formulario-perfil .senha input {
-  background-color: #dbdbdb;
+main #perfil #formulario-perfil #senha {
+  background-color: #ebebeb;
   border-style: none;
   margin-bottom: 10px;
   border-radius: 15px;
-  padding-inline: 10px;
-  padding-right: 100px;
-  padding-block: 15px;
+  padding-left: 5%;
+  padding-right: 95%;
+  padding-block: 8px;
   font-size: medium;
   font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
+}
+
+main #perfil #formulario-perfil #reservas {
+  background-color: #ebebeb;
+  border-style: none;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  padding-left: 5%;
+  padding-right: 10%;
+  padding-block: 8px;
+  font-size: medium;
+  font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
+}
+
+main #perfil #formulario-perfil #reservas option{
+  background-color: #ebebeb;
+  border-style: none;
+  border-radius: 15px;
+  font-size: medium;
+  font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
 }
 
 main #perfil #formulario-perfil .botoes {
@@ -664,13 +711,13 @@ main #atualizar-perfil #formulario-atualizar-perfil .logo img {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 200px;
-  background-color: white;
+  background-color: rgb(239, 239, 239);
   padding: 5px;
   border-radius: 20px;
 }
 
 main #atualizar-perfil #formulario-atualizar-perfil {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -678,59 +725,45 @@ main #atualizar-perfil #formulario-atualizar-perfil {
   border-radius: 25px;
   width: 100%;
   height: 100%;
-  padding-inline: 150px;
+  padding-inline: 200px;
   padding-block: 18px;
-  margin-top: 10%;
   padding-top: 70px;
 }
 
-main #atualizar-perfil #formulario-atualizar-perfil .nome_usuario input {
-  background-color: #dbdbdb;
+main #atualizar-perfil #formulario-atualizar-perfil .nome input {
+  background-color: #ebebeb;
   border-style: none;
   margin-bottom: 10px;
   border-radius: 15px;
-  padding-inline: 10px;
-  padding-right: 100px;
+  padding-left: 5%;
   padding-block: 15px;
   font-size: medium;
   font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
 }
 
 main #atualizar-perfil #formulario-atualizar-perfil .email input {
-  background-color: #dbdbdb;
+  background-color: #ebebeb;
   border-style: none;
   margin-bottom: 10px;
   border-radius: 15px;
-  padding-inline: 10px;
-  padding-right: 100px;
+  padding-left: 5%;
   padding-block: 15px;
   font-size: medium;
   font-family: "Trebuchet MS", sans-serif;
-}
-
-main #atualizar-perfil #formulario-atualizar-perfil .NIF input {
-  background-color: #dbdbdb;
-  border-style: none;
-  margin-bottom: 10px;
-  border-radius: 15px;
-  padding-inline: 10px;
-  padding-right: 100px;
-  padding-right: 100px;
-  padding-block: 15px;
-  font-size: medium;
-  font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
 }
 
 main #atualizar-perfil #formulario-atualizar-perfil .senha input {
-  background-color: #dbdbdb;
+  background-color: #ebebeb;
   border-style: none;
   margin-bottom: 10px;
   border-radius: 15px;
-  padding-inline: 10px;
-  padding-right: 100px;
+  padding-left: 5%;
   padding-block: 15px;
   font-size: medium;
   font-family: "Trebuchet MS", sans-serif;
+  color: rgb(118, 118, 118);
 }
 
 main #atualizar-perfil #formulario-atualizar-perfil .botoes {
