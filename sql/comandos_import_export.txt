@@ -1,0 +1,20 @@
+
+Importa:
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/novos_organizadores.csv'
+INTO TABLE organizador
+FIELDS TERMINATED BY ";"
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 ROWS
+(nome, email, senha, telefone);
+
+Exporta:
+
+SELECT *
+FROM organizador o
+LEFT JOIN evento e ON o.id_organizador = e.fk_id_organizador
+INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/organizador_eventos_dump.csv'
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n';
